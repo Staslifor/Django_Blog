@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block title %}Страница{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h2>{{details.title}}</h2>
+        <p class="fst-italic">{{details.content|linebreaks}}</p>
+        {% for g in details.files.all %}
+            <img class='img-article-left thumb' width="200" height="200" src="{{g.file.url}}">
+        {% endfor %}
+        <p>Автор: {{details.created_by}}</p>
+        <p>Дата публикации: {{details.created_at}}</p>
+    </div>
+{% endblock %}

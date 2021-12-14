@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% block title %} Главная странца {% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+       <h3 class="text-center">Добро пожаловать {{ request.user.username }}</h3>
+       <p class="text-center"><a href="{% url 'create' %}"><button type="submit" class="btn btn-info btn_lg">Create blog</button></a></p>
+       <p class="text-center"><a href="{% url 'load_csv' %}"><button type="submit" class="btn btn-warning">Загрузить CSV</button></a></p>
+    {% else %}
+        <h3 class="text-center">Добро пожаловать</h3>
+    {% endif %}
+    {% for i in blog %}
+        <hr>
+        <div class="text-center">
+            <h2>{{i.title}}</h2>
+            <p class="fst-italic">{{i.content|truncatewords:100}}</p>
+            {% if i.files.first.file %}
+                <p><img class='img-article-left thumb' width="200" height="200" src="{{i.files.first.file.url}}"></p>
+            {% endif %}
+            <p>{{i.created_at}}</p>
+            <p>{{i.created_by}}</p>
+            <p><a href="{% url 'detail' i.pk %}"><button class="btn btn-info btn_lg">Читать</button></a></p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block title %}Создать блог{% endblock %}
+{% block content %}
+    <h2>Создайте свой блог</h2>
+    <form method="post" class="form-control" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{form.title}}</p>
+        <p>{{form.content}}</p>
+        <p>{{file_form.file}}</p>
+        <input type="hidden" name="created_by" value="{{request.user.id}}">
+        <button type="submit" class="btn btn-info">OK</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block title %}Загрузка CSV{% endblock %}
+{% block content %}
+    <h2>Загрузите файл CSV</h2>
+    <form class="form-control" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning" type="submit">Загрузить</button>
+    </form>
+{% endblock %}

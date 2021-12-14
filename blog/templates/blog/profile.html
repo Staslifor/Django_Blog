@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block title %}Редактирование профля{% endblock %}
+{% block content %}
+    {% if user.id == profile.id %}
+    <h2>Редактирование профля</h2>
+        <form method="post" class="form-control">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-info">OK</button>
+        </form>
+    {% else %}
+        <h1><b>Error 404</b></h1>
+        <h3>Запрашиваемая Вами страница не найдена...</h3>
+    {% endif %}
+{% endblock %}
